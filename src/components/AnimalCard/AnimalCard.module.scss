@@ -1,0 +1,32 @@
+.card {
+  display: flex;
+  flex-flow: column;
+  background-color: #012840;
+  align-items: center;
+  border-radius: 10px;
+  padding-bottom: 20px;
+  color: #078C28;
+  gap: 10px;
+  box-shadow: #012840 0 0 10px 5px;
+}
+
+
+.image {
+  border-radius: 10px 10px 0 0;
+  opacity: 0.7;
+  transition: opacity 1s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.title {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.species {
+  font-size: 20px;
+  font-weight: 500;
+}
