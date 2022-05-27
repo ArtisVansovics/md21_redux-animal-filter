@@ -4,7 +4,7 @@ import './index.css';
 import { Provider } from 'react-redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './store';
+import store from './store/store';
 import './components/styles/cssReset.scss';
 import './components/styles/flexboxgrid.scss';
 import './components/styles/base.scss';
