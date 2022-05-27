@@ -1,4 +1,6 @@
 import React from 'react';
+import Form from '../../components/Form/Form';
+import AnimalCard from '../../components/AnimalCard/AnimalCard';
 
 const HomePage = () => (
   <div className="page">

@@ -6,6 +6,7 @@ import {
 import Header from './components/Header/Header';
 import Page404 from './Pages/404/Page404';
 import HomePage from './Pages/Home/HomePage';
+import TranslationsPage from './Pages/Translations/TranslationsPage';
 
 const App = () => (
   <Router>
@@ -18,6 +19,18 @@ const App = () => (
       <Route
         path="/home"
         element={<HomePage />}
+      />
+      <Route
+        path="/animals"
+        element={<HomePage />}
+      />
+      <Route
+        path="/animals"
+        element={<HomePage />}
+      />
+      <Route
+        path="/translations"
+        element={<TranslationsPage />}
       />
       <Route
         path="404"
