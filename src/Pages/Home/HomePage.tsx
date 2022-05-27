@@ -11,7 +11,11 @@ const HomePage = () => {
 
   return (
     <div className="page">
-      {showForm && <AnimalForm onAdd={() => setShowForm(false)} />}
+      {showForm && (
+        <div className="form-overlay">
+          <AnimalForm onAdd={() => setShowForm(false)} />
+        </div>
+      )}
       {animals.length === 0 && (
         <div className="warning-box">
           <h2 className="warning-box__message">No animals added yet</h2>
