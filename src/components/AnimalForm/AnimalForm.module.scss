@@ -1,0 +1,41 @@
+.form {
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+  width: 50%;
+  padding: 20px 40px;
+  background-color: #034012;
+  color: #F2E205;
+  font-size: 18px;
+}
+
+.title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 28px;
+}
+
+.label {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+
+.input {
+}
+
+.select {
+  cursor: pointer;
+}
+
+.toggleBtn {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+
+  &:hover {
+    color: #F28705;
+  }
+}

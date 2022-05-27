@@ -31,8 +31,11 @@
 }
 
 .warning-box__message {
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: 3px;
   font-size: 30px;
+  text-transform: uppercase;
+  color: #034012;
 }
 
 .box {
