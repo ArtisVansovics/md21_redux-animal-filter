@@ -24,8 +24,45 @@ const AnimalForm = ({ onAdd }: AnimalFormProps) => {
     animals.map(({ species }) => species),
   ));
 
+  const handleSubmit = () => {
+    dispatch(addAnimal(newAnimal));
+    onAdd();
+  };
+
+  const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewAnimal({
+      ...newAnimal,
+      name: e.target.value,
+    });
+  };
+
+  const handleImgUrlInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewAnimal({
+      ...newAnimal,
+      imgUrl: e.target.value,
+    });
+  };
+
+  const handleSpeciesInput = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setNewAnimal({
+      ...newAnimal,
+      species: e.target.value,
+    });
+  };
+
+  const handleExistingSpeciesClick = () => {
+    setShowSpeciesInput(false);
+    setNewAnimal({
+      ...newAnimal,
+      species: '',
+    });
+  };
+
   return (
-    <div className={styles.form}>
+    <form
+      className={styles.form}
+      onSubmit={() => handleSubmit()}
+    >
       <h2 className={styles.title}>Add Animal</h2>
       {/* Name input */}
       <label htmlFor="nameInputId" className={styles.label}>
@@ -36,12 +73,12 @@ const AnimalForm = ({ onAdd }: AnimalFormProps) => {
           id="nameInputId"
           placeholder="Enter the animal's name"
           value={newAnimal.name}
-          onChange={(e) => (
-            setNewAnimal({
-              ...newAnimal,
-              name: e.target.value,
-            })
-          )}
+          onChange={(e) => {
+            handleNameInput(e);
+          }}
+          required
+          minLength={3}
+          maxLength={15}
         />
       </label>
       {/* Image url input */}
@@ -49,16 +86,14 @@ const AnimalForm = ({ onAdd }: AnimalFormProps) => {
         Image source
         <input
           className={styles.input}
-          type="text"
+          type="url"
           id="srcInputId"
           placeholder="Enter url for the animal's picture"
           value={newAnimal.imgUrl}
-          onChange={(e) => (
-            setNewAnimal({
-              ...newAnimal,
-              imgUrl: e.target.value,
-            })
-          )}
+          onChange={(e) => {
+            handleImgUrlInput(e);
+          }}
+          required
         />
       </label>
       {/* Species input */}
@@ -69,11 +104,7 @@ const AnimalForm = ({ onAdd }: AnimalFormProps) => {
             <button
               className={styles.toggleBtn}
               onClick={() => {
-                setShowSpeciesInput(false);
-                setNewAnimal({
-                  ...newAnimal,
-                  species: '',
-                });
+                handleExistingSpeciesClick();
               }}
             >
               (select from existing species)
@@ -85,12 +116,11 @@ const AnimalForm = ({ onAdd }: AnimalFormProps) => {
             id="speciesId"
             placeholder="Enter the animal's species"
             value={newAnimal.species}
-            onChange={(e) => (
-              setNewAnimal({
-                ...newAnimal,
-                species: e.target.value,
-              })
-            )}
+            onChange={(e) => {
+              handleSpeciesInput(e);
+            }}
+            required
+            minLength={3}
           />
         </label>
       ) : (
@@ -108,12 +138,10 @@ const AnimalForm = ({ onAdd }: AnimalFormProps) => {
             className={styles.select}
             id="speciesSelectId"
             value={newAnimal.species}
-            onChange={(e) => (
-              setNewAnimal({
-                ...newAnimal,
-                species: e.target.value,
-              })
-            )}
+            onChange={(e) => {
+              handleSpeciesInput(e);
+            }}
+            required
           >
             <option
               disabled
@@ -132,13 +160,8 @@ const AnimalForm = ({ onAdd }: AnimalFormProps) => {
       )}
       <Button
         title="Add"
-        onClick={() => {
-          dispatch(addAnimal(newAnimal));
-          onAdd();
-        }}
-        disabled={!newAnimal.name || !newAnimal.imgUrl || !newAnimal.species}
       />
-    </div>
+    </form>
   );
 };
 
