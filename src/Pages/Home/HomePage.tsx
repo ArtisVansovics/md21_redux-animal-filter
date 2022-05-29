@@ -10,10 +10,14 @@ import { deleteAnimal } from '../../store/slices/animalSlice';
 const HomePage = () => {
   const animals = useSelector((state: RootState) => state.animalList.animals);
   const [showForm, setShowForm] = useState(false);
+  const [showNoAnimalsMessage, setShowNoAnimalsMessage] = useState(false);
   const [filteredAnimals, setFilteredAnimals] = useState<Animal[]>([]);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
+    if (animals.length === 0) {
+      setShowNoAnimalsMessage(true);
+    }
     setFilteredAnimals(animals);
   }, [animals]);
 
@@ -25,17 +29,44 @@ const HomePage = () => {
     <div className="page">
       {showForm && (
         <div className="form-overlay">
-          <AnimalForm onAdd={() => setShowForm(false)} />
+          <AnimalForm onAdd={() => {
+            setShowForm(false);
+            setShowNoAnimalsMessage(false);
+          }}
+          />
         </div>
       )}
-      {animals.length === 0 && (
+      {showNoAnimalsMessage && (
         <div className="warning-box">
           <h2 className="warning-box__message">No animals added yet</h2>
-          <Button title="Add animal" onClick={() => setShowForm(true)} />
+          <Button
+            title="Add animal"
+            onClick={() => setShowForm(true)}
+          />
         </div>
       )}
       {filteredAnimals.length > 0 && (
         <div className="container width-max">
+          <div className="row">
+            <div className="col-xs-12">
+              <div className="box">
+                <div className="box__row">
+                  <Button
+                    title="Add animal"
+                    onClick={() => setShowForm(true)}
+                  />
+                  <Button
+                    title="Clear all"
+                    onClick={() => {
+                      localStorage.clear();
+                      setFilteredAnimals([]);
+                      setShowNoAnimalsMessage(true);
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="row">
             <div className="col-xs-12">
               <div className="box">
@@ -66,16 +97,10 @@ const HomePage = () => {
           <div className="row">
             <div className="col-xs-12">
               <div className="box">
-                <Button
-                  title="Add animal"
-                  onClick={() => setShowForm(true)}
-                />
-                {/* <Button */}
-                {/*   title="Clear all" */}
-                {/*   onClick={() => localStorage.clear()} */}
-                {/* /> */}
                 <div className="grid">
-                  {filteredAnimals.map(({ name, species, imgUrl }, index) => (
+                  {filteredAnimals.map(({
+                    name, species, imgUrl,
+                  }, index) => (
                     <AnimalCard
                       key={Math.random()}
                       name={name}
