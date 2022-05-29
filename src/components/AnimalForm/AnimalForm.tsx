@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './AnimalForm.module.scss';
 import { AppDispatch, RootState } from '../../store/store';
@@ -8,9 +8,10 @@ import Animal from '../../models/AnimalModel';
 
 type AnimalFormProps = {
   onAdd: () => void;
+  onClose: () => void;
 }
 
-const AnimalForm = ({ onAdd }: AnimalFormProps) => {
+const AnimalForm = ({ onAdd, onClose }: AnimalFormProps) => {
   const [newAnimal, setNewAnimal] = useState<Animal>({
     name: '',
     species: '',
@@ -23,6 +24,12 @@ const AnimalForm = ({ onAdd }: AnimalFormProps) => {
   const speciesList = Array.from(new Set(
     animals.map(({ species }) => species),
   ));
+
+  useEffect(() => {
+    if (speciesList.length === 0) {
+      setShowSpeciesInput(true);
+    }
+  }, []);
 
   const capitalizeWords = (textInput: string) => {
     const wordArr = textInput.split(' ');
@@ -160,7 +167,7 @@ const AnimalForm = ({ onAdd }: AnimalFormProps) => {
                 key={species}
                 value={species}
               >
-                {species.toUpperCase()}
+                {species}
               </option>
             ))}
           </select>
@@ -169,6 +176,12 @@ const AnimalForm = ({ onAdd }: AnimalFormProps) => {
       <Button
         title="Add"
       />
+      <button
+        className={styles.closeBtn}
+        onClick={onClose}
+      >
+        X
+      </button>
     </form>
   );
 };

@@ -3,10 +3,13 @@
   flex-flow: column;
   gap: 20px;
   min-width: 50%;
-  padding: 20px 40px;
+  border-radius: 20px;
+  border: #A2D4F2 3px solid;
+  padding: 20px 40px 30px;
   background-color: #034012;
   color: #F2E205;
   font-size: 18px;
+  position: relative;
 }
 
 .title {
@@ -19,13 +22,24 @@
   display: flex;
   flex-flow: column;
   gap: 10px;
+  padding-bottom: 10px;
 }
 
 .input {
+  background-color: #023E73;
+  color: #F2E205;
+  border-radius: 5px;
+  border: none;
+  padding: 5px 10px;
 }
 
 .select {
   cursor: pointer;
+  background-color: #023E73;
+  color: #F2E205;
+  border-radius: 5px;
+  border: none;
+  padding: 8px 10px;
 }
 
 .toggleBtn {
@@ -37,5 +51,20 @@
 
   &:hover {
     color: #F28705;
+  }
+}
+
+.closeBtn {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #F28705;
+  font-size: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  &:hover {
+    color: #F20C0C;
   }
 }

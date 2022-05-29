@@ -29,10 +29,14 @@ const HomePage = () => {
     <div className="page">
       {showForm && (
         <div className="form-overlay">
-          <AnimalForm onAdd={() => {
-            setShowForm(false);
-            setShowNoAnimalsMessage(false);
-          }}
+          <AnimalForm
+            onAdd={() => {
+              setShowForm(false);
+              setShowNoAnimalsMessage(false);
+            }}
+            onClose={() => {
+              setShowForm(false);
+            }}
           />
         </div>
       )}
