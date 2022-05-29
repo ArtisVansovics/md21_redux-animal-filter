@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import AnimalForm from '../../components/AnimalForm/AnimalForm';
 import AnimalCard from '../../components/AnimalCard/AnimalCard';
-import { RootState } from '../../store/store';
+import { AppDispatch, RootState } from '../../store/store';
 import Button from '../../components/Button/Button';
 import Animal from '../../models/AnimalModel';
+import { deleteAnimal } from '../../store/slices/animalSlice';
 
 const HomePage = () => {
   const animals = useSelector((state: RootState) => state.animalList.animals);
   const [showForm, setShowForm] = useState(false);
   const [filteredAnimals, setFilteredAnimals] = useState<Animal[]>(animals);
+  const dispatch = useDispatch<AppDispatch>();
 
   const speciesList = Array.from(new Set(
     animals.map(({ species }) => species),
@@ -69,12 +71,13 @@ const HomePage = () => {
                 {/*   onClick={() => localStorage.clear()} */}
                 {/* /> */}
                 <div className="grid">
-                  {filteredAnimals.map(({ name, species, imgUrl }) => (
+                  {filteredAnimals.map(({ name, species, imgUrl }, index) => (
                     <AnimalCard
                       key={Math.random()}
                       name={name}
                       species={species}
                       imgUrl={imgUrl}
+                      onDeleteClick={() => dispatch(deleteAnimal(index))}
                     />
                   ))}
                 </div>
