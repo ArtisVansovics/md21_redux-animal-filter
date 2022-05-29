@@ -27,7 +27,14 @@ const HomePage = () => {
           <div className="row">
             <div className="col-xs-12">
               <div className="box">
-                <Button title="Add animal" onClick={() => setShowForm(true)} />
+                <Button
+                  title="Add animal"
+                  onClick={() => setShowForm(true)}
+                />
+                {/* <Button */}
+                {/*   title="Clear all" */}
+                {/*   onClick={() => localStorage.clear()} */}
+                {/* /> */}
                 <div className="grid">
                   {animals.map(({ name, species, imgUrl }) => (
                     <AnimalCard
