@@ -10,11 +10,14 @@ export const animalSlice = createSlice({
     addAnimal: (state: {animals: Animal[]}, action: {payload: Animal}) => {
       state.animals = [...state.animals, action.payload];
     },
+    deleteAnimal: (state: {animals: Animal[]}, action: {payload: number}) => {
+      state.animals.splice(action.payload, 1);
+    },
   },
 });
 
 export const {
-  addAnimal,
+  addAnimal, deleteAnimal,
 } = animalSlice.actions;
 
 export default animalSlice.reducer;

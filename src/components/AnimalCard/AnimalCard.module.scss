@@ -8,6 +8,7 @@
   color: #078C28;
   gap: 10px;
   box-shadow: #012840 0 0 10px 5px;
+  position: relative;
 }
 
 
@@ -29,4 +30,26 @@
 .species {
   font-size: 20px;
   font-weight: 500;
+}
+
+.delete {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  color: #F20C0C;
+  font-size: 20px;
+  padding: 0 7px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+
+  &:hover {
+    outline: #F20C0C 1px solid;
+  }
 }
