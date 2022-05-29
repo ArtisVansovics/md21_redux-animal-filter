@@ -12,11 +12,13 @@ const AnimalCard = ({
   name, species, imgUrl, onDeleteClick,
 }: AnimalProps) => (
   <div className={styles.card}>
-    <img
-      className={styles.image}
-      src={imgUrl}
-      alt={name}
-    />
+    <div className={styles.imgContainer}>
+      <img
+        className={styles.image}
+        src={imgUrl}
+        alt={name}
+      />
+    </div>
     <h3
       className={styles.title}
     >

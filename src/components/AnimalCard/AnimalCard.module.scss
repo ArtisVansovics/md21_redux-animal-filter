@@ -1,21 +1,32 @@
 .card {
-  display: flex;
-  flex-flow: column;
+  display: grid;
+  grid: 300px 1fr 1fr / 1fr;
+  gap: 10px;
   background-color: #012840;
   align-items: center;
   border-radius: 10px;
-  padding-bottom: 20px;
+  padding: 10px 10px 20px;
   color: #078C28;
-  gap: 10px;
+  text-align: center;
   box-shadow: #012840 0 0 10px 5px;
   position: relative;
 }
 
+.imgContainer {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  height: 100%;
+}
 
 .image {
   border-radius: 10px 10px 0 0;
   opacity: 0.7;
   transition: opacity 1s;
+  box-shadow: #078C28 0 3px 10px 1px, #078C28 0 -3px 10px 1px;
+  max-height: 100%;
 
   &:hover {
     opacity: 1;
@@ -46,10 +57,10 @@
   font-size: 20px;
   padding: 0 7px;
   position: absolute;
-  top: 5px;
+  bottom: 5px;
   right: 5px;
 
   &:hover {
-    outline: #F20C0C 1px solid;
+    outline: #F20C0C 2px solid;
   }
 }
