@@ -24,6 +24,14 @@ const AnimalForm = ({ onAdd }: AnimalFormProps) => {
     animals.map(({ species }) => species),
   ));
 
+  const capitalizeWords = (textInput: string) => {
+    const wordArr = textInput.split(' ');
+
+    const capitalized = wordArr.map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+
+    return capitalized.join(' ');
+  };
+
   const handleSubmit = () => {
     dispatch(addAnimal(newAnimal));
     onAdd();
@@ -32,7 +40,7 @@ const AnimalForm = ({ onAdd }: AnimalFormProps) => {
   const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewAnimal({
       ...newAnimal,
-      name: e.target.value,
+      name: capitalizeWords(e.target.value),
     });
   };
 
@@ -46,7 +54,7 @@ const AnimalForm = ({ onAdd }: AnimalFormProps) => {
   const handleSpeciesInput = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setNewAnimal({
       ...newAnimal,
-      species: e.target.value,
+      species: capitalizeWords(e.target.value),
     });
   };
 
