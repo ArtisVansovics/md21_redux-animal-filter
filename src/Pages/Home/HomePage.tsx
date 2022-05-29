@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AnimalForm from '../../components/AnimalForm/AnimalForm';
 import AnimalCard from '../../components/AnimalCard/AnimalCard';
@@ -10,8 +10,12 @@ import { deleteAnimal } from '../../store/slices/animalSlice';
 const HomePage = () => {
   const animals = useSelector((state: RootState) => state.animalList.animals);
   const [showForm, setShowForm] = useState(false);
-  const [filteredAnimals, setFilteredAnimals] = useState<Animal[]>(animals);
+  const [filteredAnimals, setFilteredAnimals] = useState<Animal[]>([]);
   const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    setFilteredAnimals(animals);
+  }, [animals]);
 
   const speciesList = Array.from(new Set(
     animals.map(({ species }) => species),
