@@ -22,9 +22,9 @@ const AnimalForm = ({ onAdd, onClose }: AnimalFormProps) => {
   const [newSpecies, setNewSpecies] = useState<Species>({
     speciesName: '',
     speciesTranslations: {
-      eng: '',
-      lv: '',
-      rus: '',
+      eng: 'Add translation',
+      lv: 'Add translation',
+      rus: 'Add translation',
     },
   });
   const [showSpeciesInput, setShowSpeciesInput] = useState(false);
