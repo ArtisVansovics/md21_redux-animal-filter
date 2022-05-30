@@ -15,9 +15,11 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import animalReducer from './slices/animalSlice';
+import speciesReducer from './slices/speciesSlice';
 
 const rootReducer = combineReducers({
   animalList: animalReducer,
+  speciesList: speciesReducer,
 });
 
 const persistConfig = {

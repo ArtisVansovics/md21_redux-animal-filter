@@ -2,10 +2,14 @@ type Animal = {
   name: string;
   species: string;
   imgUrl: string;
+}
+
+export type Species = {
+  speciesName: string;
   speciesTranslations: {
-    ENG: string;
-    LV: string;
-    RUS: string;
+    eng: string;
+    lv: string;
+    rus: string;
   }
 }
 

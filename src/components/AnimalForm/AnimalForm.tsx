@@ -4,7 +4,8 @@ import styles from './AnimalForm.module.scss';
 import { AppDispatch, RootState } from '../../store/store';
 import Button from '../Button/Button';
 import { addAnimal } from '../../store/slices/animalSlice';
-import Animal from '../../models/AnimalModel';
+import { addSpecies } from '../../store/slices/speciesSlice';
+import Animal, { Species } from '../../models/AnimalModel';
 
 type AnimalFormProps = {
   onAdd: () => void;
@@ -12,21 +13,22 @@ type AnimalFormProps = {
 }
 
 const AnimalForm = ({ onAdd, onClose }: AnimalFormProps) => {
+  const animals = useSelector((state: RootState) => state.animalList.animals);
   const [newAnimal, setNewAnimal] = useState<Animal>({
     name: '',
     species: '',
     imgUrl: '',
+  });
+  const [newSpecies, setNewSpecies] = useState<Species>({
+    speciesName: '',
     speciesTranslations: {
-      ENG: '',
-      LV: '',
-      RUS: '',
+      eng: '',
+      lv: '',
+      rus: '',
     },
   });
   const [showSpeciesInput, setShowSpeciesInput] = useState(false);
-  const animals = useSelector((state: RootState) => state.animalList.animals);
   const dispatch = useDispatch<AppDispatch>();
-
-  console.log(newAnimal);
 
   const speciesList = Array.from(new Set(
     animals.map(({ species }) => species),
@@ -48,6 +50,9 @@ const AnimalForm = ({ onAdd, onClose }: AnimalFormProps) => {
 
   const handleSubmit = () => {
     dispatch(addAnimal(newAnimal));
+
+    dispatch(addSpecies(newSpecies));
+
     onAdd();
   };
 
@@ -69,15 +74,21 @@ const AnimalForm = ({ onAdd, onClose }: AnimalFormProps) => {
     setNewAnimal({
       ...newAnimal,
       species: capitalizeWords(e.target.value),
+    });
+
+    setNewSpecies({
+      ...newSpecies,
+      speciesName: capitalizeWords(e.target.value),
       speciesTranslations: {
-        ...newAnimal.speciesTranslations,
-        ENG: capitalizeWords(e.target.value),
+        ...newSpecies.speciesTranslations,
+        eng: capitalizeWords(e.target.value),
       },
     });
   };
 
   const handleExistingSpeciesClick = () => {
     setShowSpeciesInput(false);
+
     setNewAnimal({
       ...newAnimal,
       species: '',
