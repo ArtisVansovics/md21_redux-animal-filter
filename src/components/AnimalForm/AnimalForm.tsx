@@ -16,10 +16,17 @@ const AnimalForm = ({ onAdd, onClose }: AnimalFormProps) => {
     name: '',
     species: '',
     imgUrl: '',
+    speciesTranslations: {
+      ENG: '',
+      LV: '',
+      RUS: '',
+    },
   });
   const [showSpeciesInput, setShowSpeciesInput] = useState(false);
   const animals = useSelector((state: RootState) => state.animalList.animals);
   const dispatch = useDispatch<AppDispatch>();
+
+  console.log(newAnimal);
 
   const speciesList = Array.from(new Set(
     animals.map(({ species }) => species),
@@ -62,6 +69,10 @@ const AnimalForm = ({ onAdd, onClose }: AnimalFormProps) => {
     setNewAnimal({
       ...newAnimal,
       species: capitalizeWords(e.target.value),
+      speciesTranslations: {
+        ...newAnimal.speciesTranslations,
+        ENG: capitalizeWords(e.target.value),
+      },
     });
   };
 
