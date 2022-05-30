@@ -71,8 +71,8 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-xs-12">
+          <div className="row center-xs">
+            <div className="col-xs-12 col-lg-10">
               <div className="box">
                 <div className="filter-container">
                   <button

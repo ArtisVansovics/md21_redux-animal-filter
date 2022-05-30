@@ -28,9 +28,9 @@ const TranslationBox = ({
   return (
     <div className={styles.container}>
       <div className={styles.box}>
-        <p>
+        <h3>
           {species}
-        </p>
+        </h3>
         <Button
           title="Add translations"
           onClick={() => {
