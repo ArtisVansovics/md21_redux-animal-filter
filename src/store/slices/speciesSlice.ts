@@ -3,7 +3,8 @@ import { Species } from '../../models/AnimalModel';
 
 export type Translation = {
   index: number;
-  value: string;
+  lv: string;
+  rus: string;
 }
 
 export const speciesSlice = createSlice({
@@ -19,22 +20,26 @@ export const speciesSlice = createSlice({
         state.species = [...state.species, action.payload];
       }
     },
-    // updateLvTranslation: (state: {species: Species[]}, action: {payload: Translation}) => {
-    //   let currentSpecies = state.species[action.payload.index];
-    //
-    //   currentSpecies = {
-    //     ...currentSpecies,
-    //     speciesTranslations: {
-    //       ...currentSpecies.speciesTranslations,
-    //       lv: action.payload.value,
-    //     },
-    //   };
-    // },
+    updateTranslation: (state: {species: Species[]}, action: {payload: Translation}) => {
+      state.species = [...state.species.map((species, index) => {
+        if (index === action.payload.index) {
+          species = {
+            ...species,
+            speciesTranslations: {
+              ...species.speciesTranslations,
+              lv: action.payload.lv,
+              rus: action.payload.rus,
+            },
+          };
+          return species;
+        } return species;
+      })];
+    },
   },
 });
 
 export const {
-  addSpecies,
+  addSpecies, updateTranslation,
 } = speciesSlice.actions;
 
 export default speciesSlice.reducer;

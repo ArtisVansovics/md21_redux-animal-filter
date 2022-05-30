@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store/store';
 import styles from './TranslationBox.module.scss';
+import Button from '../Button/Button';
+import { updateTranslation } from '../../store/slices/speciesSlice';
 
 type TranslationBoxProps = {
   species: string;
@@ -13,11 +17,11 @@ const TranslationBox = ({
   ENG, LV, RUS, species, index,
 }: TranslationBoxProps) => {
   const [currentTranslation, setCurrentTranslation] = useState({
-    lv: '',
-    rus: '',
+    index,
+    lv: LV,
+    rus: RUS,
   });
-
-  console.log(currentTranslation);
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <div className={styles.container}>
@@ -44,7 +48,7 @@ const TranslationBox = ({
             className={styles.input}
             type="text"
             placeholder="Add translation"
-            value={LV}
+            value={currentTranslation.lv}
             onChange={(e) => {
               setCurrentTranslation({
                 ...currentTranslation,
@@ -58,7 +62,8 @@ const TranslationBox = ({
           <input
             className={styles.input}
             type="text"
-            value={RUS}
+            value={currentTranslation.rus}
+            placeholder="Add translation"
             onChange={(e) => {
               setCurrentTranslation({
                 ...currentTranslation,
@@ -68,6 +73,14 @@ const TranslationBox = ({
             minLength={3}
           />
         </div>
+      </div>
+      <div className={styles.column}>
+        <Button
+          title="Add translations"
+          onClick={() => {
+            dispatch(updateTranslation(currentTranslation));
+          }}
+        />
       </div>
     </div>
   );
