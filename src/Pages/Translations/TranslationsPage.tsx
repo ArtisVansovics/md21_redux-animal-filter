@@ -10,8 +10,8 @@ const TranslationsPage = () => {
   return (
     <div className="page">
       <div className="container">
-        <div className="row">
-          <div className="col-xs-12">
+        <div className="row center-xs">
+          <div className="col-xs-12 col-sm-10 col-md-8">
             <div className="box">
               {speciesList && speciesList.map(({ speciesName, speciesTranslations }, index) => (
                 <TranslationBox
