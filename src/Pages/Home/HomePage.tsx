@@ -5,7 +5,8 @@ import AnimalCard from '../../components/AnimalCard/AnimalCard';
 import { AppDispatch, RootState } from '../../store/store';
 import Button from '../../components/Button/Button';
 import Animal from '../../models/AnimalModel';
-import { deleteAnimal } from '../../store/slices/animalSlice';
+import { clearAnimals, deleteAnimal } from '../../store/slices/animalSlice';
+import { clearSpecies } from '../../store/slices/speciesSlice';
 
 const HomePage = () => {
   const animals = useSelector((state: RootState) => state.animalList.animals);
@@ -63,6 +64,8 @@ const HomePage = () => {
                     title="Clear all"
                     onClick={() => {
                       localStorage.clear();
+                      dispatch(clearAnimals);
+                      dispatch(clearSpecies);
                       setFilteredAnimals([]);
                       setShowNoAnimalsMessage(true);
                     }}

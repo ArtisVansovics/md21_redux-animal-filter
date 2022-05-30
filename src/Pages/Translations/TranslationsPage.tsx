@@ -5,7 +5,6 @@ import TranslationBox from '../../components/TranslationBox/TranslationBox';
 
 const TranslationsPage = () => {
   const speciesList = useSelector((state: RootState) => state.speciesList.species);
-  console.log(speciesList);
 
   return (
     <div className="page">

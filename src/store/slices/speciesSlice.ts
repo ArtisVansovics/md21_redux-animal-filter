@@ -35,11 +35,14 @@ export const speciesSlice = createSlice({
         } return species;
       })];
     },
+    clearSpecies: (state: {species: Species[]}) => {
+      state.species = [];
+    },
   },
 });
 
 export const {
-  addSpecies, updateTranslation,
+  addSpecies, updateTranslation, clearSpecies,
 } = speciesSlice.actions;
 
 export default speciesSlice.reducer;
